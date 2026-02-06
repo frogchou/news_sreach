@@ -4,6 +4,6 @@ httpx
 jinja2
 python-dotenv
 apscheduler
-pydantic
+pydantic[email]
 pydantic-settings
 dashscope

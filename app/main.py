@@ -1,12 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
 from contextlib import asynccontextmanager
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from app.api.routes import router
 from app.controller import news_controller
 from app.core.config import settings
+import os
 
 # Scheduler setup
 scheduler = AsyncIOScheduler()
+templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "views/templates"))
 
 async def scheduled_news_job():
     print("Running scheduled job: Sending news to default recipient.")
@@ -29,8 +32,8 @@ app = FastAPI(title="AI News Bot", lifespan=lifespan)
 app.include_router(router, prefix="/api")
 
 @app.get("/")
-def read_root():
-    return {"message": "Welcome to AI News Bot API"}
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 if __name__ == "__main__":
     import uvicorn
