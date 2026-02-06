@@ -17,10 +17,10 @@ class QwenService:
             articles_text += f"{i+1}. Title: {art.get('title')}\n   URL: {art.get('url')}\n   Content: {art.get('content')}\n\n"
             
         prompt = (
-            "You are a professional news editor. I will provide you with a list of recent AI news articles. "
-            "Please analyze them, de-duplicate similar stories, and summarize the most important ones. "
+            "You are a professional news editor for a Chinese audience. I will provide you with a list of recent AI news articles (mostly in English). "
+            "Please analyze them, de-duplicate similar stories, and summarize the most important ones into **Chinese**. "
             "Return the result as a JSON string containing a list of objects. "
-            "Each object must have the following keys: 'title' (a concise headline), 'summary' (a brief paragraph), 'source' (source name if available), and 'url' (original link). "
+            "Each object must have the following keys: 'title' (a concise headline in Chinese), 'summary' (a brief paragraph in Chinese), 'source' (source name), and 'url' (original link). "
             "The JSON should be a list of these objects, nothing else. Do not wrap in markdown code blocks."
             f"\n\nArticles:\n{articles_text}"
         )

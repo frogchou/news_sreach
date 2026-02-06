@@ -53,7 +53,7 @@ class NewsController:
                 self.executor,
                 lambda: self.email_service.send_email(
                     to_email=recipient_email,
-                    subject="Daily AI News Digest",
+                    subject="每日 AI 新闻简报",
                     html_content=html_content
                 )
             )
